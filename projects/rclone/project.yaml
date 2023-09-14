@@ -1,0 +1,8 @@
+homepage: "https://rclone.org/"
+language: go
+primary_contact: "secsys-go@hotmail.com"
+main_repo: "https://github.com/rclone/rclone"
+fuzzing_engines:
+  - libfuzzer
+sanitizers:
+  - address
