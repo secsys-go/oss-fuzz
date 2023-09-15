@@ -21,7 +21,13 @@ export CXX="${CXX} -lresolv"
 mv $SRC/fuzzMarshalJSON.go $SRC/tidb/types/
 mv $SRC/fuzzNewBitLiteral.go $SRC/tidb/types/
 mv $SRC/fuzzNewHexLiteral.go $SRC/tidb/types/
+mv $SRC/fuzzBufferIsolation.go $SRC/tidb/br/pkg/membuf/
 
 compile_go_fuzzer github.com/pingcap/tidb/types FuzzUnmarshalJSON fuzzUnmarshalJSON
 compile_go_fuzzer github.com/pingcap/tidb/types FuzzNewBitLiteral fuzzNewBitLiteral
 compile_go_fuzzer github.com/pingcap/tidb/types FuzzNewHexLiteral fuzzNewHexLiteral
+
+go mod tidy
+printf "package membuf\nimport _ \"github.com/AdamKorcz/go-118-fuzz-build/testing\"\n" > $SRC/tidb/br/pkg/membuf/register.go
+go mod tidy
+compile_native_go_fuzzer github.com/pingcap/tidb/br/pkg/membuf FuzzTestBufferIsolation fuzzTestBufferIsolation

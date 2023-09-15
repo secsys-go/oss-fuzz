@@ -25,5 +25,6 @@ COPY build.sh \
      fuzzMarshalJSON.go \
      fuzzNewBitLiteral.go \
      fuzzNewHexLiteral.go \
+     fuzzBufferIsolation.go \
      $SRC/
 WORKDIR $SRC/tidb
