@@ -16,10 +16,10 @@
 
 FROM gcr.io/oss-fuzz-base/base-builder-go
 RUN git clone --depth 1 https://github.com/pingcap/tidb
-RUN wget https://go.dev/dl/go1.20.5.linux-amd64.tar.gz \
+RUN wget https://go.dev/dl/go1.21.1.linux-amd64.tar.gz \
     && mkdir temp-go \
     && rm -rf /root/.go/* \
-    && tar -C temp-go/ -xzf go1.20.5.linux-amd64.tar.gz \
+    && tar -C temp-go/ -xzf go1.21.1.linux-amd64.tar.gz \
     && mv temp-go/go/* /root/.go/
 COPY build.sh \
      fuzzMarshalJSON.go \
